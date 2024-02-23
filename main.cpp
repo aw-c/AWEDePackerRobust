@@ -12,6 +12,7 @@
 #include <filesystem>
 #include <thread>
 #include <mutex>
+#include <coroutine>
 
 #include <zstd.h>
 
@@ -42,7 +43,7 @@ void colored_print(T str, WORD color = COLOR_BLUE)
 #define HASH_SIZE 32
 #define ABSOLUTE_DB_PATH
 
-Database contentDB("C:\\Users\\gordy\\AppData\\Local\\Space Station 14\\launcher\\content.db");
+Database contentDB(std::string(getenv("LOCALAPPDATA") + std::string("\\Space Station 14\\launcher\\content.db")));
 std::unordered_map<uint32_t, PathInfo> Manifest;
 std::vector<ContentVersion> Forks;
 std::unordered_map<uint32_t, ContentData> Content;
